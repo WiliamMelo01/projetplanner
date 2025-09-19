@@ -2,7 +2,7 @@ import {renderCalendar} from './calendar.js'
 import {renderKanban} from './kanban.js'
 import './theme.js'
 
-let response = await fetch("../tasks.json");
+let response = await fetch("./tasks.json");
 let tasks = await response.json();
 
 renderCalendar(tasks);
