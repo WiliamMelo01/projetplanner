@@ -7,8 +7,8 @@ import { chunk, createElement } from './utils.js';
  *
  * @returns {Array} Array de objetos com { date: Date, currentMonth: boolean }
  */
-export function generateCalander(){
-    const CURRENT_DATE = new Date();
+export function generateCalander(year, month) {
+    const CURRENT_DATE = new Date(year, month);
     const CURRENT_MONTH = CURRENT_DATE.getMonth();
     const CURRENT_YEAR = CURRENT_DATE.getFullYear();
 
@@ -42,9 +42,15 @@ export function generateCalander(){
  * 
  * Utiliza os dados de tarefas do arquivo 'tasks.json'.
  */
-export async function renderCalendar(tasks){
+export async function renderCalendar(tasks, year = new Date().getFullYear(), month = new Date().getMonth()) {
 
-  let calendar = generateCalander();
+  let calendar = generateCalander(year, month);
+
+  // Datas do calendário para manda a api
+  let firstDate = calendar[0].date;
+  let lastDate = calendar[calendar.length - 1].date;
+
+  console.log("Renderizando calendário para:", firstDate.toLocaleDateString('en-CA'), "até", lastDate.toLocaleDateString('en-CA'));
 
   const weeks = chunk(calendar);
 
