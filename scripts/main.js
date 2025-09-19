@@ -5,7 +5,7 @@ import './theme.js'
 let tasks = {};
 
 try {
-  let response = await fetch("./tsasks.json");
+  let response = await fetch("./tasks.json");
   tasks = await response.json();
 } catch (error) {
   console.error("Erro ao buscar tarefas", error);
