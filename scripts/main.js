@@ -2,8 +2,14 @@ import {renderCalendar} from './calendar.js'
 import {renderKanban} from './kanban.js'
 import './theme.js'
 
-let response = await fetch("./tasks.json");
-let tasks = await response.json();
+let tasks = {};
+
+try {
+  let response = await fetch("./tsasks.json");
+  tasks = await response.json();
+} catch (error) {
+  console.error("Erro ao buscar tarefas", error);
+}
 
 renderCalendar(tasks);
 
